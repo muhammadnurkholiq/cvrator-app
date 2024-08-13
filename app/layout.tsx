@@ -4,6 +4,8 @@ import type { Metadata } from "next";
 import "./styles/globals.css";
 import { inter } from "./styles/fonts";
 
+import { BackgroundBeams } from "./components/ui/background-beams";
+
 export const metadata: Metadata = {
   title: "CVRator",
   description: "Generate your CV with AI"
@@ -16,7 +18,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} px-10`}>{children}</body>
+      <body className={inter.className}>
+        <BackgroundBeams />
+        <div className="px-10 relative z-10">{children}</div>
+      </body>
     </html>
   );
 }
