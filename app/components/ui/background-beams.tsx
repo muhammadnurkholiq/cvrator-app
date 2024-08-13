@@ -65,7 +65,7 @@ export const BackgroundBeams = React.memo(
         )}
       >
         <svg
-          className=" z-0 h-full w-full pointer-events-none absolute "
+          className="z-0 h-full w-full pointer-events-none absolute "
           width="100%"
           height="100%"
           viewBox="0 0 696 316"
@@ -78,7 +78,6 @@ export const BackgroundBeams = React.memo(
             strokeOpacity="0.05"
             strokeWidth="0.5"
           ></path>
-
           {paths.map((path, index) => (
             <motion.path
               key={`path-` + index}
@@ -94,16 +93,16 @@ export const BackgroundBeams = React.memo(
                 id={`linearGradient-${index}`}
                 key={`gradient-${index}`}
                 initial={{
-                  x1: "0%",
-                  x2: "0%",
-                  y1: "0%",
-                  y2: "0%"
+                  x1: "25%",
+                  x2: "25%",
+                  y1: "25%",
+                  y2: "25%"
                 }}
                 animate={{
-                  x1: ["0%", "100%"],
-                  x2: ["0%", "95%"],
-                  y1: ["0%", "100%"],
-                  y2: ["0%", `${93 + Math.random() * 8}%`]
+                  x1: ["25%", "100%"],
+                  x2: ["25%", "95%"],
+                  y1: ["25%", "100%"],
+                  y2: ["25%", `${93 + Math.random() * 8}%`]
                 }}
                 transition={{
                   duration: Math.random() * 10 + 10,
