@@ -19,8 +19,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <BackgroundBeams />
         <div className="px-10 relative z-10">{children}</div>
+        <BackgroundBeams />
       </body>
     </html>
   );
