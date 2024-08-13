@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+// styles
+import "./styles/globals.css";
+import { inter } from "./styles/fonts";
 
 export const metadata: Metadata = {
   title: "CVRator",
@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`${inter.className} px-10`}>{children}</body>
     </html>
   );
 }
