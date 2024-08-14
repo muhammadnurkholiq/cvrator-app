@@ -1,8 +1,9 @@
+import "./styles/globals.css";
+
 import type { Metadata } from "next";
 import Link from "next/link";
 
 // styles
-import "./styles/globals.css";
 import { robotoSlab } from "./styles/fonts";
 
 import { BackgroundBeams } from "./components/background-beams";
@@ -20,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${robotoSlab.className} relative h-[100vh] overflow-hidden`}
+        className={`${robotoSlab.className} relative h-[100vh] bg-background-main overflow-hidden`}
       >
         <div className="px-10 relative z-10 h-[100%]">
           <div className="h-[10%] flex text-center justify-center items-center">
