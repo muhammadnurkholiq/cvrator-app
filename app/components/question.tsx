@@ -48,13 +48,17 @@ const Question = ({ questions }: Props) => {
               </span>
               /{listQuestion.length}
             </p>
-            <div className={"text-2xl md:text-4xl text-primary-contrastText"}>
+            <div
+              className={
+                "text-2xl xl:text-3xl text-primary-contrastText text-center"
+              }
+            >
               <Typewriter
                 key={questionNumber}
                 words={[listQuestion[questionNumber]?.text]}
                 cursor
                 cursorStyle="_"
-                typeSpeed={100}
+                typeSpeed={70}
                 deleteSpeed={0}
               />
             </div>
