@@ -23,17 +23,19 @@ export default function RootLayout({
       <body
         className={`${robotoSlab.className} relative h-[100vh] bg-background-main overflow-hidden`}
       >
-        <div className="px-10 relative z-10 h-[100%]">
+        <div className="px-10 relative flex flex-col items-center z-10 h-[100%]">
           <div className="h-[10%] flex text-center justify-center items-center">
             <Link href="/">
-              <p className={"text-4xl text-primary-contrastText"}>
+              <p className={"text-2xl md:text-3xl text-primary-contrastText"}>
                 <span className="text-primary-main">CV</span>RATOR
               </p>
             </Link>
           </div>
-          <div className="h-[75%] max-h-[75%">{children}</div>
+          <div className="h-[75%] max-h-[75%] w-[100%] md:w-[80%] xl:w-[70%]">
+            {children}
+          </div>
           <div className="h-[10%] flex text-center justify-center items-center">
-            <p className={"text-sm text-primary-contrastText"}>
+            <p className={"text-xs text-primary-contrastText"}>
               &copy; 2024 <span className="text-primary-main">Wacana Cuan</span>
               . All rights reserved.
             </p>
