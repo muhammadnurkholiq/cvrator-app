@@ -17,6 +17,7 @@ const QuestionField: React.FC<Props> = ({ question }) => {
     <Field className="flex flex-col gap-2">
       <Label className="text-2xl font-medium text-white">
         <Typewriter
+          key={question.text}
           words={[question.text || ""]}
           cursor
           cursorStyle="_"
@@ -26,6 +27,7 @@ const QuestionField: React.FC<Props> = ({ question }) => {
       </Label>
       <Description className="text-sm/6 text-white/50">
         <Typewriter
+          key={question.text}
           words={[question.desc || ""]}
           cursor
           cursorStyle="_"
