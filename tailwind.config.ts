@@ -67,15 +67,6 @@ const config: Config = {
       }
     }
   },
-  plugins: [
-    addVariablesForColors,
-    function ({ addBase, theme }: any) {
-      addBase({
-        ":root": {
-          "--background-color-main": theme("colors.background.main")
-        }
-      });
-    }
-  ]
+  plugins: [addVariablesForColors]
 };
 export default config;
