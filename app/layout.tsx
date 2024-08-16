@@ -21,9 +21,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${robotoSlab.className} relative h-[100vh] bg-background-main overflow-hidden`}
+        className={`${robotoSlab.className} min-h-[100vh] max-w-[100vw] bg-background-main overflow-x-hidden`}
       >
-        <div className="px-10 relative flex flex-col items-center z-10 h-[100%]">
+        <div className="px-10 min-h-[100vh] relative flex flex-col justify-between items-center z-20 py-10">
+          {/* Header Section */}
           <div className="h-[10%] flex text-center justify-center items-center">
             <Link href="/">
               <p className={"text-2xl md:text-3xl text-primary-contrastText"}>
@@ -31,13 +32,17 @@ export default function RootLayout({
               </p>
             </Link>
           </div>
-          <div className="h-[75%] max-h-[75%] w-[100%] md:w-[80%] xl:w-[70%]">
+
+          {/* Middle Content Section */}
+          <div className="flex justify-center items-center w-[100%] md:w-[80%] xl:w-[70%] my-10 h-auto">
             {children}
           </div>
+
+          {/* Footer Section (Copyright) */}
           <div className="h-[10%] flex text-center justify-center items-center">
-            <p className={"text-xs text-primary-contrastText"}>
-              &copy; 2024 <span className="text-primary-main">Wacana Cuan</span>
-              . All rights reserved.
+            <p className={"text-sm text-primary-contrastText"}>
+              &copy; 2024 <span className="text-blood-20">Wacana Cuan</span>.
+              All rights reserved.
             </p>
           </div>
         </div>

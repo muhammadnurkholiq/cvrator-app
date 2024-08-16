@@ -6,7 +6,7 @@ import Question from "@/app/components/question";
 
 export default function page() {
   return (
-    <div className="h-[100%]">
+    <div className="h-[100%] w-[100%]">
       <Question questions={questions} />
     </div>
   );
