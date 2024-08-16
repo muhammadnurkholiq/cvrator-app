@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, Suspense } from "react";
 import { saveAs } from "file-saver";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
@@ -13,18 +13,7 @@ import PDFPreview from "./pdf-preview";
 import TemplateDropdown from "./template-dropdown";
 
 const PDFGenerate: React.FC = () => {
-  const [isLoading, setIsLoading] = useState(true);
   const [selectedTemplate, setSelectedTemplate] = useState("Template 1");
-
-  useEffect(() => {
-    // Set loading to false after 2 seconds
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-
-    // Clean up the timer on component unmount
-    return () => clearTimeout(timer);
-  }, []);
 
   const generatePDF = async (): Promise<void> => {
     const input = document.getElementById("pdf-content");
@@ -88,41 +77,35 @@ const PDFGenerate: React.FC = () => {
   };
 
   return (
-    <>
-      {isLoading ? (
-        <div>
-          <CircleLoading />
-        </div>
-      ) : (
-        <div className="flex flex-col gap-5">
-          <div className="flex flex-row justify-between items-end">
-            <TemplateDropdown
-              selectedTemplate={selectedTemplate}
-              onChange={setSelectedTemplate}
-              options={[
-                { id: 1, name: "Template 1" },
-                { id: 2, name: "Template 2" },
-                { id: 3, name: "Template 3" }
-              ]}
-            />
+    <Suspense fallback={<CircleLoading />}>
+      <div className="flex flex-col gap-5">
+        <div className="flex flex-row justify-between items-end">
+          <TemplateDropdown
+            selectedTemplate={selectedTemplate}
+            onChange={setSelectedTemplate}
+            options={[
+              { id: 1, name: "Template 1" },
+              { id: 2, name: "Template 2" },
+              { id: 3, name: "Template 3" }
+            ]}
+          />
 
-            <div>
-              <Button
-                onClick={generatePDF}
-                className="inline-flex items-center gap-2 rounded-md bg-gray-700 py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-gray-600 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white"
-              >
-                Save changes
-              </Button>
-            </div>
-          </div>
-          <div className="w-[100%] border border-gray-300 p-4 rounded-lg shadow-lg">
-            <div id="pdf-content">
-              <PDFPreview selectedTemplate={selectedTemplate} />
-            </div>
+          <div>
+            <Button
+              onClick={generatePDF}
+              className="inline-flex items-center gap-2 rounded-md bg-gray-700 py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-gray-600 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white"
+            >
+              Save changes
+            </Button>
           </div>
         </div>
-      )}
-    </>
+        <div className="w-[100%] border border-gray-300 p-4 rounded-lg shadow-lg">
+          <div id="pdf-content">
+            <PDFPreview selectedTemplate={selectedTemplate} />
+          </div>
+        </div>
+      </div>
+    </Suspense>
   );
 };
 
