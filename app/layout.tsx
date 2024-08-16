@@ -39,7 +39,7 @@ export default function RootLayout({
           </div>
 
           {/* Footer Section (Copyright) */}
-          <div className="h-[10%] flex text-center justify-center items-center pb-10 no-print">
+          <div className="h-[10%] flex text-center justify-center items-center mt-10 pb-10 no-print">
             <p className={"text-sm text-primary-contrastText"}>
               &copy; 2024 <span className="text-blood-20">Wacana Cuan</span>.
               All rights reserved.
