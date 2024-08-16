@@ -18,13 +18,13 @@ const PDFPreview: React.FC<PDFPreviewProps> = ({ selectedTemplate }) => {
   const TemplateComponent = templateMap[selectedTemplate] || null;
 
   return (
-    <div className="w-[100%] border border-gray-300 p-4 rounded-lg shadow-lg">
+    <>
       {TemplateComponent ? (
         <TemplateComponent />
       ) : (
         <p>Select a template to preview.</p>
       )}
-    </div>
+    </>
   );
 };
 

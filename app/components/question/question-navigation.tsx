@@ -39,13 +39,6 @@ const QuestionNavigation: React.FC<Props> = ({
         >
           Finish
         </Link>
-        // <button
-        //   onClick={handleNext}
-        //   disabled={!isLastQuestion}
-        //   className="bg-grey-900 text-white border border-grey-900 hover:bg-primary-main rounded py-2 px-4 disabled:cursor-not-allowed disabled:text-grey-500"
-        // >
-        //   Finish
-        // </button>
       )}
     </div>
   );
