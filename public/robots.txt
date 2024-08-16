@@ -1,0 +1,23 @@
+# Mengizinkan semua bot untuk merayapi seluruh situs
+User-agent: *
+Disallow: /admin/
+Disallow: /login/
+Disallow: /register/
+Disallow: /user-profile/
+Disallow: /settings/
+Disallow: /private/
+Disallow: /temp/
+Disallow: /generated/
+Disallow: /*?*
+Disallow: /*.pdf$
+Disallow: /*?session_id=
+
+Allow: /images/
+Allow: /public/
+Allow: /questions/
+
+# Menambahkan lokasi sitemap
+Sitemap: https://cvrator-app.vercel.app/sitemap.xml
+
+# Mengarahkan bot untuk memperbarui index pada interval tertentu
+Crawl-delay: 10
