@@ -146,7 +146,7 @@ export default function ResumeTemplate1() {
           <div className="flex flex-col h-[100%] justify-center ">
             <div className="flex flex-col gap-2">
               <div>
-                <p className="text-md font-semibold">Awards</p>
+                <p className="text-md font-semibold">Certification</p>
                 <div className="border-t-4 border-b-2 border-gray-300"></div>
               </div>
               {/* list experience */}
@@ -238,7 +238,7 @@ export default function ResumeTemplate1() {
           <div className="flex flex-col h-[100%] justify-center ">
             <div className="flex flex-col gap-2">
               <div>
-                <p className="text-md font-semibold">Volunteering</p>
+                <p className="text-md font-semibold">Skills</p>
                 <div className="border-t-4 border-b-2 border-gray-300"></div>
               </div>
               {/* list experience */}
