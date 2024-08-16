@@ -23,9 +23,9 @@ export default function RootLayout({
       <body
         className={`${robotoSlab.className} min-h-[100vh] max-w-[100vw] bg-background-main overflow-x-hidden`}
       >
-        <div className="px-10 min-h-[100vh] relative flex flex-col justify-between items-center z-20 py-10">
+        <div className="px-10 min-h-[100vh] relative flex flex-col justify-between items-center z-20">
           {/* Header Section */}
-          <div className="h-[10%] flex text-center justify-center items-center">
+          <div className="h-[10%] flex text-center justify-center items-center mb-10 pt-10 no-print">
             <Link href="/">
               <p className={"text-2xl md:text-3xl text-primary-contrastText"}>
                 <span className="text-primary-main">CV</span>RATOR
@@ -34,12 +34,12 @@ export default function RootLayout({
           </div>
 
           {/* Middle Content Section */}
-          <div className="flex justify-center items-center w-[100%] md:w-[80%] xl:w-[70%] my-10 h-auto">
+          <div className="flex justify-center items-center w-[100%] md:w-[80%] xl:w-[70%] h-auto">
             {children}
           </div>
 
           {/* Footer Section (Copyright) */}
-          <div className="h-[10%] flex text-center justify-center items-center">
+          <div className="h-[10%] flex text-center justify-center items-center pb-10 no-print">
             <p className={"text-sm text-primary-contrastText"}>
               &copy; 2024 <span className="text-blood-20">Wacana Cuan</span>.
               All rights reserved.

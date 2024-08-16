@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@media print {
+  body {
+    margin: 0;
+  }
+
+  @page {
+    margin: 0;
+  }
+
+  .no-print {
+    display: none;
+  }
+  .print-only {
+    margin: 0; /* Remove margins for this specific class */
+    position: absoluted;
+    display: block;
+  }
+}
