@@ -6,3 +6,7 @@ package.json
 next-env.d.ts
 next.config.mjs
 postcss.config.mjs
+
+payload.json
+response.json
+promp.txt

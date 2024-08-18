@@ -9,7 +9,14 @@ import CircleLoading from "../loading/circle-loading";
 import PDFPreview from "./pdf-preview";
 import TemplateDropdown from "./template-dropdown";
 
-const PDFGenerate: React.FC = () => {
+// type
+import { UserData } from "@/app/types/user-data";
+
+interface PageProps {
+  dataUser: UserData;
+}
+
+const PDFGenerate = ({ dataUser }: PageProps) => {
   const [selectedTemplate, setSelectedTemplate] = useState("Template 1");
 
   const printContent = async () => {
@@ -36,7 +43,7 @@ const PDFGenerate: React.FC = () => {
           </div>
         </div>
         <div className="h-[297mm] w-[210mm] print-only">
-          <PDFPreview selectedTemplate={selectedTemplate} />
+          <PDFPreview dataUser={dataUser} selectedTemplate={selectedTemplate} />
         </div>
       </div>
     </Suspense>

@@ -1,0 +1,74 @@
+{
+  "message": {
+    "certifications": [
+      {
+        "certification": "Certified Web Developer",
+        "date": "2020",
+        "issued_by": "Progate Indonesia"
+      },
+      {
+        "certification": "Data Science Professional",
+        "date": "2021",
+        "issued_by": "DataCamp"
+      }
+    ],
+    "contact_information": {
+      "address": "Dago, Bandung",
+      "email": "rizkyaditya@gmail.com",
+      "phone": "081234567890"
+    },
+    "education": [
+      {
+        "achievements": [
+          "Graduated with Honors.",
+          "Completed a capstone project on web application development."
+        ],
+        "degree": "Bachelor of Computer Science",
+        "duration": "2015 - 2019",
+        "institution": "Institut Teknologi Bandung (ITB)"
+      }
+    ],
+    "experience": [
+      {
+        "company": "Tokopedia",
+        "duration": "2 years",
+        "job_title": "Software Engineer",
+        "responsibilities": [
+          "Developed and maintained web applications.",
+          "Collaborated with cross-functional teams to deliver features.",
+          "Optimized application performance and user experience."
+        ]
+      },
+      {
+        "company": "Bukalapak",
+        "duration": "1 year",
+        "job_title": "Front-End Developer",
+        "responsibilities": [
+          "Built responsive user interfaces using React.",
+          "Worked closely with UX/UI designers to implement designs.",
+          "Troubleshot and resolved bugs and performance issues."
+        ]
+      }
+    ],
+    "name": "Rizky Aditya Putra",
+    "skills": [
+      {
+        "proficiency": "Advanced",
+        "skill": "Web Development"
+      },
+      {
+        "proficiency": "Advanced",
+        "skill": "JavaScript"
+      },
+      {
+        "proficiency": "Intermediate",
+        "skill": "React"
+      },
+      {
+        "proficiency": "Intermediate",
+        "skill": "Node.js"
+      }
+    ],
+    "summary": "Experienced web developer with a strong background in JavaScript and modern web technologies. Proven ability to deliver high-quality web applications and collaborate effectively with cross-functional teams. Skilled in both front-end and back-end development with a focus on creating scalable and efficient solutions."
+  }
+}

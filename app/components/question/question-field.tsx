@@ -26,12 +26,24 @@ const QuestionField: React.FC<Props> = ({ question }) => {
         />
       </Label>
       <Description className="text-sm/6 text-white/50">
+        Description :
         <Typewriter
           key={question.text}
           words={[question.desc || ""]}
           cursor
           cursorStyle="_"
-          typeSpeed={40}
+          typeSpeed={25}
+          deleteSpeed={0}
+        />
+      </Description>
+      <Description className="text-sm/6 text-white/50">
+        Example of input :{" "}
+        <Typewriter
+          key={question.text}
+          words={[question.example || ""]}
+          cursor
+          cursorStyle="_"
+          typeSpeed={50}
           deleteSpeed={0}
         />
       </Description>
