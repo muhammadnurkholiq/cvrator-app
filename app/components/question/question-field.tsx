@@ -26,7 +26,7 @@ const QuestionField: React.FC<Props> = ({ question }) => {
         />
       </Label>
       <Description className="text-sm/6 text-white/50">
-        Description :
+        Description :{" "}
         <Typewriter
           key={question.text}
           words={[question.desc || ""]}
