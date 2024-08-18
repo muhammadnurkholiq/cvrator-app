@@ -8,11 +8,11 @@ import { UserData } from "@/app/types/user-data";
 const ResumeTemplate1: React.FC<{ dataUser: UserData }> = ({ dataUser }) => {
   return (
     <div
-      className={`${robotoCondensed.className}robomax-w-4xl mx-auto p-6 bg-white shadow-md rounded-lg flex flex-col gap-3`}
+      className={`${robotoCondensed.className} h-[100%] w-[100%] robomax-w-4xl mx-auto p-6 bg-white shadow-md rounded-lg flex flex-col gap-5`}
     >
       {/* section 1 - identity */}
-      <div className="flex flex-col h-[100%] justify-center">
-        <div className="flex flex-col gap-2">
+      <div className="flex flex-col justify-center">
+        <div className="flex flex-col gap-5">
           <p className="text-4xl font-medium text-center">{dataUser?.name}</p>
           <div className="grid grid-cols-12 text-center">
             <div className="text-md col-span-4">
@@ -33,7 +33,7 @@ const ResumeTemplate1: React.FC<{ dataUser: UserData }> = ({ dataUser }) => {
         {/* side left */}
         <div className="col-span-7">
           {/* content side left */}
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-5">
             {/* section summary */}
             <div className="flex flex-col h-[100%] justify-center">
               <div className="flex flex-col gap-2">
@@ -41,7 +41,9 @@ const ResumeTemplate1: React.FC<{ dataUser: UserData }> = ({ dataUser }) => {
                   <p className="text-md font-semibold">Summary</p>
                   <div className="border-t-4 border-b-2 border-gray-300"></div>
                 </div>
-                <p className="text-sm font-normal">{dataUser?.summary}</p>
+                <p className="text-sm font-normal text-justify">
+                  {dataUser?.summary}
+                </p>
               </div>
             </div>
 
@@ -69,7 +71,9 @@ const ResumeTemplate1: React.FC<{ dataUser: UserData }> = ({ dataUser }) => {
                       </div>
                       <ul className="list-disc pl-4 text-sm">
                         {item?.responsibilities?.map((item, key) => (
-                          <li key={key}>{item}</li>
+                          <li key={key} className="text-justify">
+                            {item}
+                          </li>
                         ))}
                       </ul>
                     </div>
@@ -113,7 +117,7 @@ const ResumeTemplate1: React.FC<{ dataUser: UserData }> = ({ dataUser }) => {
         {/* side right  */}
         <div className="col-span-5">
           {/* content side right */}
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-5">
             {/* section education */}
             <div className="flex flex-col h-[100%] justify-center ">
               <div className="flex flex-col gap-2">
@@ -138,7 +142,9 @@ const ResumeTemplate1: React.FC<{ dataUser: UserData }> = ({ dataUser }) => {
                       </div>
                       <ul className="list-disc pl-4 text-sm">
                         {item?.achievements?.map((item, key) => (
-                          <li key={key}>{item}</li>
+                          <li key={key} className="text-justify">
+                            {item}
+                          </li>
                         ))}
                       </ul>
                     </div>
