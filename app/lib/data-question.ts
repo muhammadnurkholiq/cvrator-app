@@ -54,7 +54,7 @@ export const questions: QuestionType[] = [
     text: "Do you have any previous work experience? Please mention your most recent role and company.",
     desc: "List your most recent job titles along with the companies you worked for and the duration of employment. Start with the most recent experience. Separate each entry with a comma.",
     example:
-      "Software Engineer - Tokopedia - 2 years, Front-End Developer - Bukalapak - 1 year",
+      "Software Engineer-Tokopedia-2 years, Front-End Developer-Bukalapak-1 year",
     type: "text",
     line: "multi"
   },
@@ -63,7 +63,7 @@ export const questions: QuestionType[] = [
     text: "Please write down the education that you have completed.",
     desc: "Enter the details of your most recent educational qualifications, including the degree, institution, and years attended. If you have multiple qualifications, list them starting from the most recent.",
     example:
-      "Bachelor of Computer Science, Institut Teknologi Bandung (ITB) 2015-2019",
+      "Bachelor of Business Administration-Universitas Gadjah Mada (UGM)-2014/2018, Bachelor of Information Technology-Universitas Indonesia (UI)-2016/2020",
     type: "text",
     line: "multi"
   },
@@ -71,7 +71,8 @@ export const questions: QuestionType[] = [
     id: "certificates",
     text: "Do you have any certifications from training or institutes?",
     desc: "Mention any certifications you have obtained from professional training programs or educational institutions. Include the name of the certification, the issuing body, and the year obtained. Separate each certification with a comma.",
-    example: "Certified Web Developer, Progate Indonesia, 2020",
+    example:
+      "Certified Web Developer-Progate Indonesia-2020, Certified Web Developer-Progate Indonesia-2021",
     type: "text",
     line: "multi"
   }
