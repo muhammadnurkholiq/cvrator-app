@@ -15,15 +15,9 @@ const ResumeTemplate1: React.FC<{ dataUser: UserData }> = ({ dataUser }) => {
         <div className="flex flex-col gap-5">
           <p className="text-4xl font-medium text-center">{dataUser?.name}</p>
           <div className="grid grid-cols-12 text-center">
-            <div className="text-md col-span-4">
-              {dataUser?.contact_information?.phone}
-            </div>
-            <div className="text-md col-span-4">
-              {dataUser?.contact_information?.email}
-            </div>
-            <div className="text-md col-span-4">
-              {dataUser?.contact_information?.address}
-            </div>
+            <div className="text-md col-span-4">{dataUser?.phone}</div>
+            <div className="text-md col-span-4">{dataUser?.email}</div>
+            <div className="text-md col-span-4">{dataUser?.address}</div>
           </div>
         </div>
       </div>
@@ -61,16 +55,14 @@ const ResumeTemplate1: React.FC<{ dataUser: UserData }> = ({ dataUser }) => {
                       <p className="text-md">{item?.company}</p>
                       <div className="w-[100%] flex flex-row justify-between">
                         <div className="w-[80%]">
-                          <p className="text-md text-blue-500">
-                            {item?.job_title}
-                          </p>
+                          <p className="text-md text-blue-500">{item?.title}</p>
                         </div>
                         <div className="w-[20%] text-right">
                           <p className="text-sm">{item?.duration}</p>
                         </div>
                       </div>
                       <ul className="list-disc pl-4 text-sm">
-                        {item?.responsibilities?.map((item, key) => (
+                        {item?.description?.split(",")?.map((item, key) => (
                           <li key={key} className="text-justify">
                             {item}
                           </li>
@@ -93,17 +85,12 @@ const ResumeTemplate1: React.FC<{ dataUser: UserData }> = ({ dataUser }) => {
                 <div className="w-[100%] flex flex-col gap-2">
                   {dataUser?.certifications?.map((item, key) => (
                     <div className="flex flex-col" key={key}>
-                      <p className="text-md font-normal">
-                        {item?.certification}
-                      </p>
                       <div className="w-[100%] flex flex-row justify-between">
                         <div className="w-[90%]">
-                          <p className="text-md text-blue-500">
-                            {item?.issued_by}
-                          </p>
+                          <p className="text-md text-blue-500">{item?.title}</p>
                         </div>
                         <div className="w-[10%] text-right">
-                          <p className="text-sm">{item?.date}</p>
+                          <p className="text-sm">{item?.year}</p>
                         </div>
                       </div>
                     </div>
@@ -140,13 +127,6 @@ const ResumeTemplate1: React.FC<{ dataUser: UserData }> = ({ dataUser }) => {
                           <p className="text-sm">{item?.duration}</p>
                         </div>
                       </div>
-                      <ul className="list-disc pl-4 text-sm">
-                        {item?.achievements?.map((item, key) => (
-                          <li key={key} className="text-justify">
-                            {item}
-                          </li>
-                        ))}
-                      </ul>
                     </div>
                   ))}
                 </div>
@@ -164,26 +144,20 @@ const ResumeTemplate1: React.FC<{ dataUser: UserData }> = ({ dataUser }) => {
                 <div className="w-[100%] flex flex-col gap-2">
                   {dataUser?.skills
                     ?.sort((a, b) => {
-                      if (a.skill < b.skill) {
+                      if (a.title < b.title) {
                         return -1;
                       }
-                      if (a.skill > b.skill) {
+                      if (a.title > b.title) {
                         return 1;
                       }
                       return 0;
                     })
                     ?.map((item, key) => (
                       <div className="flex flex-col" key={key}>
-                        <div className="w-[100%] flex flex-row justify-between">
-                          <div className="w-[60%]">
-                            <p className="text-sm text-blue-500">
-                              {item?.skill}
-                            </p>
-                          </div>
-                          <div className="w-[40%] text-right">
-                            <p className="text-sm">{item?.proficiency}</p>
-                          </div>
-                        </div>
+                        <p className="text-md text-blue-500">{item?.title}</p>
+                        <p className="text-sm text-justify">
+                          {item?.description}
+                        </p>
                       </div>
                     ))}
                 </div>

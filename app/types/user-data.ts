@@ -1,42 +1,39 @@
-// userData.ts
-
-export interface Certification {
-  certification: string;
-  date: string;
-  issued_by: string;
+interface Skill {
+  title: string;
+  description: string;
 }
 
-export interface ContactInformation {
-  address: string;
-  email: string;
-  phone: string;
-}
-
-export interface Education {
-  achievements: string[];
-  degree: string;
-  duration: string;
-  institution: string;
-}
-
-export interface Experience {
+interface Experience {
+  title: string;
   company: string;
+  location: string;
   duration: string;
-  job_title: string;
-  responsibilities: string[];
+  type: string;
+  description: string;
 }
 
-export interface Skill {
-  proficiency: string;
-  skill: string;
+interface Education {
+  degree: string;
+  field: string;
+  institution: string;
+  location: string;
+  duration: string;
+}
+
+interface Certification {
+  title: string;
+  year: string;
 }
 
 export interface UserData {
   name: string;
-  contact_information: ContactInformation;
+  age: number;
+  phone: string;
+  email: string;
+  address: string;
   summary: string;
   skills: Skill[];
-  education: Education[];
   experience: Experience[];
+  education: Education[];
   certifications: Certification[];
 }

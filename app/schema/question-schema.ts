@@ -7,7 +7,12 @@ export const QuestionSchema = z.object({
     .max(100, "Name must be less than 100 characters") // Maximum character length
     .refine((value) => value.trim().split(/\s+/).length >= 1, {
       message: "Name must contain at least one word"
-    }), // Minimum words
+    }),
+
+  age: z
+    .string()
+    .min(1, "Age must have at least 1 characters")
+    .max(3, "Name must be less than 3 characters"),
 
   email: z
     .string()

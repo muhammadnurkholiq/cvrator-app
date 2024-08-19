@@ -55,7 +55,7 @@ const QuestionField: React.FC<Props> = ({ question, register, errors }) => {
       {question.line === "single" ? (
         <>
           <Input
-            type="text"
+            type={question.type}
             autoComplete="off"
             className={clsx(
               "block w-full rounded-lg border-none bg-white/5 py-1.5 px-3 text-sm/6 text-white placeholder:text-white/50 focus:ring-0",
@@ -73,8 +73,8 @@ const QuestionField: React.FC<Props> = ({ question, register, errors }) => {
           />
           {errors[errorKey] && (
             <p className="text-sm/6 text-red-500">
-              {typeof errors[errorKey]?.message === "string"
-                ? errors[errorKey]?.message
+              {typeof errors[errorKey] === "string"
+                ? errors[errorKey]
                 : "An error occurred"}
             </p>
           )}
@@ -98,8 +98,8 @@ const QuestionField: React.FC<Props> = ({ question, register, errors }) => {
           />
           {errors[errorKey] && (
             <p className="text-sm/6 text-red-500">
-              {typeof errors[errorKey]?.message === "string"
-                ? errors[errorKey]?.message
+              {typeof errors[errorKey] === "string"
+                ? errors[errorKey]
                 : "An error occurred"}
             </p>
           )}

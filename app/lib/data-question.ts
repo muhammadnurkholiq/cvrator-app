@@ -10,6 +10,14 @@ export const questions: QuestionType[] = [
     line: "single"
   },
   {
+    id: "age",
+    text: "How old are you?",
+    desc: "Provide your age in years. This information can help potential employers understand your experience level and career stage.",
+    example: "23",
+    type: "text",
+    line: "single"
+  },
+  {
     id: "email",
     text: "Please input your email.",
     desc: "Enter a professional email address that you regularly check, as it will be used for potential employers to contact you.",

@@ -5,7 +5,7 @@ import { UserData } from "@/app/types/user-data";
 import Response from "@/app/goal/response.json";
 
 const Page: React.FC = async () => {
-  const dataUser: UserData | null = Response.message;
+  const dataUser: UserData | null = Response;
 
   if (!dataUser) {
     return <CircleLoading />;

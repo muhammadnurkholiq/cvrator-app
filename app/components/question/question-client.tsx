@@ -1,10 +1,11 @@
-"use client";
-
 import React, { useState, useCallback, useMemo, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { Dialog } from "@headlessui/react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import QuestionField from "./question-field";
 import QuestionNavigation from "./question-navigation";
+import QuestionDialog from "./question-dialog";
 import { QuestionType } from "@/app/types/question";
 import {
   QuestionSchema,
@@ -16,7 +17,9 @@ type Props = {
 };
 
 const QuestionClient: React.FC<Props> = ({ questions }) => {
+  const router = useRouter();
   const [questionNumber, setQuestionNumber] = useState<number>(0);
+  const [openDialog, setOpenDialog] = useState(false);
 
   const {
     register,
@@ -33,7 +36,7 @@ const QuestionClient: React.FC<Props> = ({ questions }) => {
 
   useEffect(() => {
     const initialData = questions.reduce((acc: any, question) => {
-      acc[question.id] = ""; // Set initial values to empty strings
+      acc[question.id] = ""; // Initialize all fields as empty strings or appropriate default values
       return acc;
     }, {} as QuestionFormValues);
 
@@ -47,7 +50,7 @@ const QuestionClient: React.FC<Props> = ({ questions }) => {
       .id as keyof QuestionFormValues;
     const storedData = JSON.parse(localStorage.getItem("formData") || "{}");
     const value = storedData[currentQuestionId] || "";
-    setValue(currentQuestionId, value as string); // Ensure `value` is a string
+    setValue(currentQuestionId, value as string);
   }, [questionNumber, questions, setValue]);
 
   const handleNextQuestion = useCallback(async () => {
@@ -64,7 +67,7 @@ const QuestionClient: React.FC<Props> = ({ questions }) => {
 
     // Save the current value to localStorage
     const formData = JSON.parse(localStorage.getItem("formData") || "{}");
-    formData[currentQuestionId] = currentValue as string;
+    formData[currentQuestionId] = currentValue;
     localStorage.setItem("formData", JSON.stringify(formData));
 
     // Move to the next question
@@ -78,7 +81,7 @@ const QuestionClient: React.FC<Props> = ({ questions }) => {
 
     // Save the current value to localStorage
     const formData = JSON.parse(localStorage.getItem("formData") || "{}");
-    formData[currentQuestionId] = currentValue as string;
+    formData[currentQuestionId] = currentValue;
     localStorage.setItem("formData", JSON.stringify(formData));
 
     // Move to the previous question
@@ -90,9 +93,22 @@ const QuestionClient: React.FC<Props> = ({ questions }) => {
     [questions, questionNumber]
   );
 
+  const handleOpenDialog = () => {
+    setOpenDialog(true);
+  };
+
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
+  };
+
   const onSubmit: SubmitHandler<QuestionFormValues> = (data) => {
-    // Handle form submission here
-    console.log(data);
+    const datas = {
+      ...data,
+      age: parseInt(data?.age)
+    };
+    console.log(datas);
+    router.push("/generate");
+    handleCloseDialog();
   };
 
   // Get the current field's value
@@ -102,7 +118,10 @@ const QuestionClient: React.FC<Props> = ({ questions }) => {
 
   // Refactor isNextDisabled to be more accurate
   const isFieldError = !!errors[currentQuestionId];
-  const isNextDisabled = isFieldError || currentFieldValue.trim().length === 0;
+  const isNextDisabled =
+    isFieldError ||
+    (typeof currentFieldValue === "string" &&
+      currentFieldValue.trim().length === 0);
 
   return (
     <div className="flex flex-col items-center justify-center h-[100%] p-4 gap-5">
@@ -127,8 +146,22 @@ const QuestionClient: React.FC<Props> = ({ questions }) => {
           questionNumber={questionNumber}
           totalQuestions={questions.length}
           isNextDisabled={isNextDisabled}
+          handleOpenDialog={handleOpenDialog}
         />
       </form>
+
+      {/* dialog */}
+      <Dialog
+        open={openDialog}
+        as="div"
+        className="relative z-100 focus:outline-none"
+        onClose={handleOpenDialog}
+      >
+        <QuestionDialog
+          close={handleCloseDialog}
+          submit={handleSubmit(onSubmit)}
+        />
+      </Dialog>
     </div>
   );
 };
