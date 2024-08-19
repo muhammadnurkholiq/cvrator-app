@@ -106,7 +106,7 @@ const QuestionClient: React.FC<Props> = ({ questions }) => {
       ...data,
       age: parseInt(data?.age)
     };
-    console.log(datas);
+    localStorage.setItem("finalData", JSON.stringify(datas));
     router.push("/generate");
     handleCloseDialog();
   };
