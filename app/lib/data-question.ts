@@ -58,13 +58,5 @@ export const questions: QuestionType[] = [
     example: "Certified Web Developer, Progate Indonesia, 2020",
     type: "text",
     line: "multi"
-  },
-  {
-    text: "Please provide a summary that captures the highlights of your experience, skills, and education.",
-    desc: "Write a brief summary that showcases your professional profile, focusing on your key achievements, skills, and experiences. This should give potential employers a quick overview of your strengths and qualifications.",
-    example:
-      "With over 3 years of experience in software development and a strong background in JavaScript and web technologies, I have successfully delivered scalable and high-performing web applications for leading Indonesian tech companies.",
-    type: "text",
-    line: "multi"
   }
 ];
