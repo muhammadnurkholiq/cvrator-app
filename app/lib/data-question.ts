@@ -63,7 +63,7 @@ export const questions: QuestionType[] = [
     text: "Please write down the education that you have completed.",
     desc: "Enter the details of your most recent educational qualifications, including the degree, institution, and years attended. If you have multiple qualifications, list them starting from the most recent.",
     example:
-      "Bachelor of Business Administration-Universitas Gadjah Mada (UGM)-2014/2018, Bachelor of Information Technology-Universitas Indonesia (UI)-2016/2020",
+      "Bachelor of Business Administration-Universitas Gadjah Mada (UGM)-2014/2018, Bachelor of Information Technology-Universitas Indonesia (UI)-2018/2022",
     type: "text",
     line: "multi"
   },
