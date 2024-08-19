@@ -2,16 +2,21 @@ import React from "react";
 import { Field, Input, Textarea, Label, Description } from "@headlessui/react";
 import clsx from "clsx";
 import { Typewriter } from "react-simple-typewriter";
+import { FieldErrors, UseFormRegister } from "react-hook-form";
 import { QuestionType } from "@/app/types/question";
 
 type Props = {
   question: QuestionType;
+  register: UseFormRegister<any>;
+  errors: FieldErrors;
 };
 
-const QuestionField: React.FC<Props> = ({ question }) => {
+const QuestionField: React.FC<Props> = ({ question, register, errors }) => {
   if (!question) {
     return <p className="text-red-500">Question not found.</p>;
   }
+
+  const errorKey = question.id;
 
   return (
     <Field className="flex flex-col gap-2">
@@ -26,9 +31,9 @@ const QuestionField: React.FC<Props> = ({ question }) => {
         />
       </Label>
       <Description className="text-sm/6 text-white/50">
-        Description :{" "}
+        Description:{" "}
         <Typewriter
-          key={question.text}
+          key={question.id + "_desc"}
           words={[question.desc || ""]}
           cursor
           cursorStyle="_"
@@ -37,9 +42,9 @@ const QuestionField: React.FC<Props> = ({ question }) => {
         />
       </Description>
       <Description className="text-sm/6 text-white/50">
-        Example of input :{" "}
+        Example of input:{" "}
         <Typewriter
-          key={question.text}
+          key={question.id + "_example"}
           words={[question.example || ""]}
           cursor
           cursorStyle="_"
@@ -48,33 +53,60 @@ const QuestionField: React.FC<Props> = ({ question }) => {
         />
       </Description>
       {question.line === "single" ? (
-        <Input
-          type={question.type === "text" ? "text" : "file"}
-          accept="image/*"
-          className={clsx(
-            "block w-full rounded-lg border-none bg-white/5 py-1.5 px-3 text-sm/6 text-white",
-            "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25"
+        <>
+          <Input
+            type="text"
+            autoComplete="off"
+            className={clsx(
+              "block w-full rounded-lg border-none bg-white/5 py-1.5 px-3 text-sm/6 text-white placeholder:text-white/50 focus:ring-0",
+              errors[errorKey] && "border-2 border-red-500"
+            )}
+            {...register(errorKey, {
+              onChange: (e) => {
+                const formData = JSON.parse(
+                  localStorage.getItem("formData") || "{}"
+                );
+                formData[errorKey] = e.target.value;
+                localStorage.setItem("formData", JSON.stringify(formData));
+              }
+            })}
+          />
+          {errors[errorKey] && (
+            <p className="text-sm/6 text-red-500">
+              {typeof errors[errorKey]?.message === "string"
+                ? errors[errorKey]?.message
+                : "An error occurred"}
+            </p>
           )}
-          placeholder="Input your answer"
-          autoFocus
-          autoComplete="new-password"
-        />
+        </>
       ) : (
-        <Textarea
-          className={clsx(
-            "block w-full resize-none rounded-lg border-none bg-white/5 py-1.5 px-3 text-sm/6 text-white",
-            "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25"
+        <>
+          <Textarea
+            className={clsx(
+              "block w-full rounded-lg border-none bg-white/5 py-1.5 px-3 text-sm/6 text-white placeholder:text-white/50 focus:ring-0",
+              errors[errorKey] && "border-2 border-red-500"
+            )}
+            {...register(errorKey, {
+              onChange: (e) => {
+                const formData = JSON.parse(
+                  localStorage.getItem("formData") || "{}"
+                );
+                formData[errorKey] = e.target.value;
+                localStorage.setItem("formData", JSON.stringify(formData));
+              }
+            })}
+          />
+          {errors[errorKey] && (
+            <p className="text-sm/6 text-red-500">
+              {typeof errors[errorKey]?.message === "string"
+                ? errors[errorKey]?.message
+                : "An error occurred"}
+            </p>
           )}
-          placeholder="Input your answer"
-          rows={3}
-          autoFocus
-          autoComplete="new-password"
-        />
+        </>
       )}
     </Field>
   );
 };
 
-QuestionField.displayName = "QuestionField";
-
-export default React.memo(QuestionField);
+export default QuestionField;

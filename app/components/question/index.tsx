@@ -1,3 +1,5 @@
+"use client";
+
 import QuestionClient from "./question-client";
 import Loading from "../loading/circle-loading";
 
