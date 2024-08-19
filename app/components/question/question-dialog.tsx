@@ -20,7 +20,9 @@ export default function QuestionDialog({
           >
             Information
           </DialogTitle>
-          <p className="mt-2 text-sm text-gray-600">Progress your data to CV</p>
+          <p className="mt-2 text-sm text-gray-600 text-center">
+            Progress your data to CV
+          </p>
           <div className="mt-4 flex flex-row justify-center items-center gap-5">
             <Button
               className="inline-flex items-center gap-2 rounded-md bg-gray-700 py-1.5 px-3 text-sm font-semibold text-white shadow-md hover:bg-gray-800"
