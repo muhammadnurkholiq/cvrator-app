@@ -6,10 +6,16 @@ import { UserData } from "@/app/types/user-data";
 const Page = async () => {
   let dataUser: UserData | null = null;
   let error: string | null = null;
-
   let loading = true;
 
   try {
+    const storedData = localStorage.getItem("finalData");
+    if (!storedData) {
+      throw new Error("No data found in local storage");
+    }
+
+    const jsonData = JSON.parse(storedData);
+
     const response = await fetch(
       "https://services-cvrator.vercel.app/base/generate",
       {
@@ -17,7 +23,7 @@ const Page = async () => {
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({})
+        body: JSON.stringify(jsonData)
       }
     );
 
