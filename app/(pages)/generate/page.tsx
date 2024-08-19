@@ -1,49 +1,64 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 import PDFGenerate from "@/app/components/pdf";
 import CircleLoading from "@/app/components/loading/circle-loading";
 import { UserData } from "@/app/types/user-data";
 
-const Page = async () => {
-  let dataUser: UserData | null = null;
-  let error: string | null = null;
-  let loading = true;
+const Page: React.FC = () => {
+  const [dataUser, setDataUser] = useState<UserData | null>();
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
 
-  try {
-    const storedData = localStorage.getItem("finalData");
-    if (!storedData) {
-      throw new Error("No data found in local storage");
-    }
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      setError(null); // Reset error state before starting a new fetch
+      try {
+        // Fetch data from local storage and send it to the API
+        const storedData = localStorage.getItem("finalData");
+        if (!storedData) {
+          throw new Error("No data found in local storage");
+        }
 
-    const jsonData = JSON.parse(storedData);
+        const jsonData = JSON.parse(storedData);
+        const response = await fetch(
+          "https://services-cvrator.vercel.app/base/generate",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(jsonData)
+          }
+        );
 
-    const response = await fetch(
-      "https://services-cvrator.vercel.app/base/generate",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: jsonData
+        if (!response.ok) {
+          throw new Error(`Error: ${response.statusText}`);
+        }
+
+        const result: { message: UserData } = await response.json();
+        setDataUser(result?.message);
+      } catch (error) {
+        console.error("Failed to fetch data:", error);
+        setError(
+          error instanceof Error ? error.message : "An unknown error occurred"
+        );
+      } finally {
+        setLoading(false);
       }
-    );
+    };
 
-    if (!response.ok) {
-      throw new Error(`Error: ${response.statusText}`);
-    }
+    fetchData();
+  }, []);
 
-    const responseTemp = await response.json();
-    dataUser = responseTemp?.message;
-  } catch (e) {
-    error = e instanceof Error ? e.message : "An unknown error occurred";
-  } finally {
-    loading = false;
+  if (loading) {
+    return <CircleLoading />;
   }
 
   return (
     <div className="h-[100%] w-[100%]">
-      {loading ? (
-        <CircleLoading />
-      ) : error ? (
+      {error ? (
         <div>
           <p className="text-2xl text-red-600 text-center">Error</p>
           <p className="text-red-500 text-center">{error}</p>
