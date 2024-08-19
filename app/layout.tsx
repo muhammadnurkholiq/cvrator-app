@@ -28,7 +28,8 @@ export default function RootLayout({
           <div className="h-[10%] flex text-center justify-center items-center mb-10 pt-10 no-print">
             <Link href="/">
               <p className={"text-2xl md:text-3xl text-primary-contrastText"}>
-                <span className="text-primary-main">CV</span>RATOR
+                <span className="text-primary-main">CV</span>RATOR{" "}
+                <span className="text-sm">Beta Version</span>
               </p>
             </Link>
           </div>
