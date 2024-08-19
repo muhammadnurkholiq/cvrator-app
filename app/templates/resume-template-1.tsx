@@ -15,9 +15,10 @@ const ResumeTemplate1: React.FC<{ dataUser: UserData }> = ({ dataUser }) => {
         <div className="flex flex-col gap-5">
           <p className="text-4xl font-medium text-center">{dataUser?.name}</p>
           <div className="grid grid-cols-12 text-center">
-            <div className="text-md col-span-4">{dataUser?.phone}</div>
-            <div className="text-md col-span-4">{dataUser?.email}</div>
-            <div className="text-md col-span-4">{dataUser?.address}</div>
+            <div className="text-md col-span-3">{dataUser?.age}</div>
+            <div className="text-md col-span-3">{dataUser?.phone}</div>
+            <div className="text-md col-span-3">{dataUser?.email}</div>
+            <div className="text-md col-span-3">{dataUser?.address}</div>
           </div>
         </div>
       </div>
