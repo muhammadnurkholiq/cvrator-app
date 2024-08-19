@@ -20,6 +20,7 @@ const PDFGenerate = ({ dataUser }: PageProps) => {
   const [selectedTemplate, setSelectedTemplate] = useState("Template 1");
 
   const printContent = async () => {
+    document.title = `cvrator-${dataUser?.name}`;
     window.print();
   };
 
