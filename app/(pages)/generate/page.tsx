@@ -5,12 +5,8 @@ import PDFGenerate from "@/app/components/pdf";
 import CircleLoading from "@/app/components/loading/circle-loading";
 import { UserData } from "@/app/types/user-data";
 
-interface Props {
-  initialData: UserData | null;
-}
-
-const Page: React.FC<Props> = ({ initialData }) => {
-  const [dataUser, setDataUser] = useState<UserData | null>(initialData);
+const Page: React.FC = () => {
+  const [dataUser, setDataUser] = useState<UserData | null>();
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
