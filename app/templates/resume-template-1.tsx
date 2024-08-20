@@ -133,7 +133,6 @@ const styles = StyleSheet.create({
   listItem: {
     display: "flex",
     flexDirection: "row",
-    alignItems: "center",
     textAlign: "justify"
   },
   bullet: {
