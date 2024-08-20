@@ -10,6 +10,17 @@ const Page: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
+  const replaceEmptyStrings = (data: any) => {
+    for (const key in data) {
+      if (typeof data[key] === "string" && data[key].trim() === "") {
+        data[key] = "-";
+      } else if (typeof data[key] === "object" && data[key] !== null) {
+        replaceEmptyStrings(data[key]);
+      }
+    }
+    return data;
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -21,7 +32,10 @@ const Page: React.FC = () => {
           throw new Error("No data found in local storage");
         }
 
-        const jsonData = JSON.parse(userData);
+        let jsonData = JSON.parse(userData);
+
+        // Ganti string kosong dengan "-"
+        jsonData = replaceEmptyStrings(jsonData);
 
         const response = await fetch(
           "https://services-cvrator.vercel.app/base/generate",
