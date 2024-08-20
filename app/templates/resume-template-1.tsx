@@ -75,29 +75,33 @@ const ResumeTemplate1: React.FC<{ dataUser: UserData }> = ({ dataUser }) => {
             </div>
 
             {/* section certification */}
-            <div className="flex flex-col h-[100%] justify-center ">
-              <div className="flex flex-col gap-2">
-                <div>
-                  <p className="text-md font-semibold">Certification</p>
-                  <div className="border-t-4 border-b-2 border-gray-300"></div>
-                </div>
-                {/* list certification */}
-                <div className="w-[100%] flex flex-col gap-2">
-                  {dataUser?.certifications?.map((item, key) => (
-                    <div className="flex flex-col" key={key}>
-                      <div className="w-[100%] flex flex-row justify-between">
-                        <div className="w-[90%]">
-                          <p className="text-md text-blue-500">{item?.title}</p>
-                        </div>
-                        <div className="w-[10%] text-right">
-                          <p className="text-sm">{item?.year}</p>
+            {dataUser?.certifications?.length > 0 && (
+              <div className="flex flex-col h-[100%] justify-center ">
+                <div className="flex flex-col gap-2">
+                  <div>
+                    <p className="text-md font-semibold">Certification</p>
+                    <div className="border-t-4 border-b-2 border-gray-300"></div>
+                  </div>
+                  {/* list certification */}
+                  <div className="w-[100%] flex flex-col gap-2">
+                    {dataUser?.certifications?.map((item, key) => (
+                      <div className="flex flex-col" key={key}>
+                        <div className="w-[100%] flex flex-row justify-between">
+                          <div className="w-[90%]">
+                            <p className="text-md text-blue-500">
+                              {item?.title}
+                            </p>
+                          </div>
+                          <div className="w-[10%] text-right">
+                            <p className="text-sm">{item?.year}</p>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
 
