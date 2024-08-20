@@ -12,7 +12,7 @@ export const QuestionSchema = z.object({
   age: z
     .string()
     .min(1, "Age must have at least 1 characters")
-    .max(3, "Name must be less than 3 characters"),
+    .max(3, "Age must be less than 3 characters"),
 
   email: z
     .string()
