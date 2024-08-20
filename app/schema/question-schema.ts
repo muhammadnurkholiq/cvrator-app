@@ -57,13 +57,7 @@ export const QuestionSchema = z.object({
       message: "Education must contain at least one word"
     }), // Minimum words
 
-  certificates: z
-    .string()
-    .min(1, "Certificates are required") // Minimum length
-    .max(300, "Certificates must be less than 300 characters") // Maximum length
-    .refine((value) => value.trim().split(/\s+/).length >= 1, {
-      message: "Certificates must contain at least one word"
-    }) // Minimum words
+  certificates: z.string().nullable()
 });
 
 export type QuestionFormValues = z.infer<typeof QuestionSchema>;

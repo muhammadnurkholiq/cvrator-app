@@ -126,9 +126,13 @@ const QuestionClient: React.FC<Props> = ({ questions }) => {
   const currentFieldValue = watch(currentQuestionId) || "";
 
   const isFieldError = !!errors[currentQuestionId];
+
+  const nullableFields: (keyof QuestionFormValues)[] = ["certificates"];
+
   const isNextDisabled =
     isFieldError ||
-    (typeof currentFieldValue === "string" &&
+    (!nullableFields.includes(currentQuestionId) &&
+      typeof currentFieldValue === "string" &&
       currentFieldValue.trim().length === 0);
 
   return (
@@ -183,7 +187,7 @@ const QuestionClient: React.FC<Props> = ({ questions }) => {
             />
             <ListQuestionAnswer
               name="Certificates"
-              value={getValues("certificates")}
+              value={getValues("certificates") || "-"}
             />
             <div className="flex flex-row items-center justify-center gap-5 mt-2">
               <Button
