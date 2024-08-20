@@ -6,7 +6,7 @@ import CircleLoading from "@/app/components/loading/circle-loading";
 import { UserData } from "@/app/types/user-data";
 
 const Page: React.FC = () => {
-  const [dataUser, setDataUser] = useState<UserData | null>();
+  const [dataUser, setDataUser] = useState<UserData | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 

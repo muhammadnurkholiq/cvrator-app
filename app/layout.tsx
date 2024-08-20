@@ -1,7 +1,6 @@
 import "./styles/globals.css";
 
 import type { Metadata } from "next";
-import Link from "next/link";
 
 // styles
 import { robotoSlab } from "./styles/fonts";
@@ -26,12 +25,10 @@ export default function RootLayout({
         <div className="px-10 min-h-[100vh] relative flex flex-col justify-between items-center z-20">
           {/* Header Section */}
           <div className="h-[10%] flex text-center justify-center items-center mb-10 pt-10 no-print">
-            <Link href="/">
-              <p className={"text-2xl md:text-3xl text-primary-contrastText"}>
-                <span className="text-primary-main">CV</span>RATOR{" "}
-                <span className="text-sm">Beta Version</span>
-              </p>
-            </Link>
+            <p className={"text-2xl md:text-3xl text-primary-contrastText"}>
+              <span className="text-primary-main">CV</span>RATOR{" "}
+              <span className="text-sm">Beta Version</span>
+            </p>
           </div>
 
           {/* Middle Content Section */}
