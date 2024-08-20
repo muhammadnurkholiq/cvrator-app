@@ -36,8 +36,8 @@ export const questions: QuestionType[] = [
   {
     id: "address",
     text: "What is your address?",
-    desc: "Enter your current address, including street, city, and province. If preferred, you can just list city and province.",
-    example: "Dago, Bandung",
+    desc: "Enter your city and province only.",
+    example: "Bandung, Jawa Barat",
     type: "text",
     line: "single"
   },

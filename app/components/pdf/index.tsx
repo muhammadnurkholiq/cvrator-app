@@ -2,11 +2,13 @@
 
 import React, { useState, Suspense } from "react";
 import { Button } from "@headlessui/react";
+import { ArrowUturnLeftIcon } from "@heroicons/react/16/solid";
 
 import CircleLoading from "../loading/circle-loading";
 
 // components
 import PDFPreview from "./pdf-preview";
+import PDFDialog from "./pdf-dialog";
 import TemplateDropdown from "./template-dropdown";
 
 // type
@@ -17,12 +19,12 @@ interface PageProps {
 }
 
 const PDFGenerate = ({ dataUser }: PageProps) => {
+  const [openDialog, setOpenDialog] = useState(false);
   const [selectedTemplate, setSelectedTemplate] = useState("Template 1");
 
-  const printContent = async () => {
-    document.title = `cvrator-${dataUser?.name}`;
-    window.print();
-  };
+  // dialog
+  const handleOpenDialog = () => setOpenDialog(true);
+  const handleCloseDialog = () => setOpenDialog(false);
 
   return (
     <Suspense fallback={<CircleLoading />}>
@@ -36,10 +38,11 @@ const PDFGenerate = ({ dataUser }: PageProps) => {
 
           <div>
             <Button
-              onClick={printContent}
-              className="inline-flex items-center gap-2 rounded-md bg-gray-700 py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-gray-600 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white"
+              onClick={handleOpenDialog}
+              className="inline-flex items-center gap-2 rounded-md bg-primary-main py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-gray-600 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white"
             >
-              Print PDF
+              Back
+              <ArrowUturnLeftIcon className="w-5 text-primary-contrastText" />
             </Button>
           </div>
         </div>
@@ -47,6 +50,9 @@ const PDFGenerate = ({ dataUser }: PageProps) => {
           <PDFPreview dataUser={dataUser} selectedTemplate={selectedTemplate} />
         </div>
       </div>
+
+      {/* Modal for final submission confirmation */}
+      <PDFDialog open={openDialog} close={handleCloseDialog} />
     </Suspense>
   );
 };
