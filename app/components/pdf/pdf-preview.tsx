@@ -1,5 +1,6 @@
-import React from "react";
+import React, { Suspense } from "react";
 import dynamic from "next/dynamic";
+import CircleLoading from "../loading/circle-loading";
 import ResumeTemplate1 from "@/app/templates/resume-template-1";
 
 const PDFViewer = dynamic(
@@ -28,14 +29,16 @@ const PDFPreview: React.FC<PDFPreviewProps> = ({
   return (
     <>
       {TemplateComponent ? (
-        <PDFViewer
-          style={{
-            width: "100%",
-            height: "100%"
-          }}
-        >
-          <TemplateComponent dataUser={dataUser} />
-        </PDFViewer>
+        <Suspense fallback={<CircleLoading />}>
+          <PDFViewer
+            style={{
+              width: "100%",
+              height: "100%"
+            }}
+          >
+            <TemplateComponent dataUser={dataUser} />
+          </PDFViewer>
+        </Suspense>
       ) : (
         <p>Select a template to preview.</p>
       )}
