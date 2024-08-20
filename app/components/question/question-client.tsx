@@ -107,7 +107,18 @@ const QuestionClient: React.FC<Props> = ({ questions }) => {
   const handleOpenDialog = () => setOpenDialog(true);
   const handleCloseDialog = () => setOpenDialog(false);
   // state
-  const handleConfirm = () => setConfirm(true);
+  const handleConfirm = () => {
+    const currentQuestionId = questions[questionNumber]
+      .id as keyof QuestionFormValues;
+    const currentValue = getValues(currentQuestionId);
+
+    // Save the current value to localStorage
+    const formData = JSON.parse(localStorage.getItem("user-data") || "{}");
+    formData[currentQuestionId] = currentValue;
+    localStorage.setItem("user-data", JSON.stringify(formData));
+
+    setConfirm(true);
+  };
   const handleCancel = () => setConfirm(false);
 
   const currentQuestionId = questions[questionNumber]
