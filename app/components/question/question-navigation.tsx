@@ -7,7 +7,7 @@ type Props = {
   questionNumber: number;
   totalQuestions: number;
   isNextDisabled: boolean;
-  handleOpenDialog: () => void;
+  handleFinish: () => void;
 };
 
 /**
@@ -20,7 +20,7 @@ const QuestionNavigation = React.memo(
     questionNumber,
     totalQuestions,
     isNextDisabled,
-    handleOpenDialog
+    handleFinish
   }: Props) => {
     const isLastQuestion = questionNumber === totalQuestions - 1;
 
@@ -37,7 +37,7 @@ const QuestionNavigation = React.memo(
         {isLastQuestion ? (
           <Button
             type="button"
-            onClick={handleOpenDialog}
+            onClick={handleFinish}
             disabled={isNextDisabled}
             className="bg-grey-900 text-white border border-grey-900 hover:bg-primary-main rounded py-2 px-4 disabled:cursor-not-allowed disabled:text-grey-500"
           >

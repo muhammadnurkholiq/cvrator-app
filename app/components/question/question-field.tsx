@@ -78,6 +78,7 @@ const QuestionField: React.FC<Props> = ({ question, register, errors }) => {
       ) : (
         <>
           <Textarea
+            autoComplete="off"
             className={clsx(
               "block w-full rounded-lg border-none bg-white/5 py-1.5 px-3 text-sm/6 text-white placeholder:text-white/50 focus:ring-0",
               error && "border-2 border-red-500"

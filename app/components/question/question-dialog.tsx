@@ -49,26 +49,24 @@ const QuestionDialog: React.FC<Props> = ({ open, close }) => {
               <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
                 <div className="flex min-h-full items-center justify-center p-4">
                   <DialogPanel className="w-full max-w-md rounded-xl bg-white/5 p-6 backdrop-blur-2xl duration-10 ease-in-out">
-                    <DialogTitle
-                      as="h3"
-                      className="text-base/7 font-medium text-white"
-                    >
+                    <DialogTitle className="text-lg font-medium text-white">
                       Confirmation
                     </DialogTitle>
-                    <p className="mt-2 text-sm/6 text-white/50">
-                      Progress your data to CV
+                    <p className="mt-4 text-sm/6 text-white/50">
+                      Are you sure you want to submit your information and
+                      generate your CV?
                     </p>
                     <div className="mt-4">
                       <div className="mt-4 flex flex-row justify-center items-center gap-5">
                         <Button
-                          className="inline-flex items-center gap-2 rounded-md bg-gray-700 py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none hover:bg-gray-600"
+                          className="bg-grey-900 text-white border border-grey-900 hover:bg-primary-main rounded py-2 px-4 disabled:cursor-not-allowed disabled:text-grey-500"
                           onClick={close}
                         >
                           Cancel
                         </Button>
                         <Link
                           href="/generate"
-                          className="inline-flex items-center gap-2 rounded-md bg-primary-main py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none hover:bg-primary-dark"
+                          className="bg-primary-main text-white border border-grey-900 hover:bg-primary-dark rounded py-2 px-4 disabled:cursor-not-allowed disabled:text-grey-500"
                         >
                           Generate
                         </Link>
