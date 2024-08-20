@@ -1,6 +1,5 @@
 import React, { useState, useCallback, useMemo, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Dialog } from "@headlessui/react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import QuestionField from "./question-field";
@@ -16,6 +15,9 @@ type Props = {
   questions: QuestionType[];
 };
 
+/**
+ * Component to handle question display and navigation with form handling.
+ */
 const QuestionClient: React.FC<Props> = ({ questions }) => {
   const router = useRouter();
   const [questionNumber, setQuestionNumber] = useState<number>(0);
@@ -34,25 +36,16 @@ const QuestionClient: React.FC<Props> = ({ questions }) => {
     mode: "onChange"
   });
 
-  useEffect(() => {
-    const initialData = questions.reduce((acc: any, question) => {
-      acc[question.id] = ""; // Initialize all fields as empty strings or appropriate default values
-      return acc;
-    }, {} as QuestionFormValues);
-
-    if (!localStorage.getItem("formData")) {
-      localStorage.setItem("formData", JSON.stringify(initialData));
-    }
-  }, [questions]);
-
+  // Load data from localStorage when questionNumber changes
   useEffect(() => {
     const currentQuestionId = questions[questionNumber]
       .id as keyof QuestionFormValues;
-    const storedData = JSON.parse(localStorage.getItem("formData") || "{}");
+    const storedData = JSON.parse(localStorage.getItem("user-data") || "{}");
     const value = storedData[currentQuestionId] || "";
     setValue(currentQuestionId, value as string);
   }, [questionNumber, questions, setValue]);
 
+  // Save data to localStorage and move to the next question
   const handleNextQuestion = useCallback(async () => {
     const currentQuestionId = questions[questionNumber]
       .id as keyof QuestionFormValues;
@@ -60,29 +53,27 @@ const QuestionClient: React.FC<Props> = ({ questions }) => {
 
     // Trigger validation for the current question field
     const result = await trigger(currentQuestionId);
-
-    if (!result) {
-      return;
-    }
+    if (!result) return;
 
     // Save the current value to localStorage
-    const formData = JSON.parse(localStorage.getItem("formData") || "{}");
+    const formData = JSON.parse(localStorage.getItem("user-data") || "{}");
     formData[currentQuestionId] = currentValue;
-    localStorage.setItem("formData", JSON.stringify(formData));
+    localStorage.setItem("user-data", JSON.stringify(formData));
 
     // Move to the next question
     setQuestionNumber((prev) => Math.min(prev + 1, questions.length - 1));
   }, [questionNumber, questions, getValues, trigger]);
 
-  const handlePrevQuestion = useCallback(async () => {
+  // Save data to localStorage and move to the previous question
+  const handlePrevQuestion = useCallback(() => {
     const currentQuestionId = questions[questionNumber]
       .id as keyof QuestionFormValues;
     const currentValue = getValues(currentQuestionId);
 
     // Save the current value to localStorage
-    const formData = JSON.parse(localStorage.getItem("formData") || "{}");
+    const formData = JSON.parse(localStorage.getItem("user-data") || "{}");
     formData[currentQuestionId] = currentValue;
-    localStorage.setItem("formData", JSON.stringify(formData));
+    localStorage.setItem("user-data", JSON.stringify(formData));
 
     // Move to the previous question
     setQuestionNumber((prev) => Math.max(prev - 1, 0));
@@ -93,30 +84,19 @@ const QuestionClient: React.FC<Props> = ({ questions }) => {
     [questions, questionNumber]
   );
 
-  const handleOpenDialog = () => {
-    setOpenDialog(true);
-  };
+  const handleOpenDialog = () => setOpenDialog(true);
+  const handleCloseDialog = () => setOpenDialog(false);
 
-  const handleCloseDialog = () => {
-    setOpenDialog(false);
-  };
-
-  const onSubmit: SubmitHandler<QuestionFormValues> = (data) => {
-    const datas = {
-      ...data,
-      age: parseInt(data?.age)
-    };
-    localStorage.setItem("finalData", JSON.stringify(datas));
+  // Handle form submission
+  const onSubmit: SubmitHandler<QuestionFormValues> = () => {
     router.push("/generate");
     handleCloseDialog();
   };
 
-  // Get the current field's value
   const currentQuestionId = questions[questionNumber]
     .id as keyof QuestionFormValues;
   const currentFieldValue = watch(currentQuestionId) || "";
 
-  // Refactor isNextDisabled to be more accurate
   const isFieldError = !!errors[currentQuestionId];
   const isNextDisabled =
     isFieldError ||
@@ -150,18 +130,8 @@ const QuestionClient: React.FC<Props> = ({ questions }) => {
         />
       </form>
 
-      {/* dialog */}
-      <Dialog
-        open={openDialog}
-        as="div"
-        className="relative z-100 focus:outline-none"
-        onClose={handleOpenDialog}
-      >
-        <QuestionDialog
-          close={handleCloseDialog}
-          submit={handleSubmit(onSubmit)}
-        />
-      </Dialog>
+      {/* Modal for final submission confirmation */}
+      <QuestionDialog open={openDialog} close={handleCloseDialog} />
     </div>
   );
 };

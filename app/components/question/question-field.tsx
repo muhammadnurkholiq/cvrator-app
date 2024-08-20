@@ -2,7 +2,7 @@ import React from "react";
 import { Field, Input, Textarea, Label, Description } from "@headlessui/react";
 import clsx from "clsx";
 import { Typewriter } from "react-simple-typewriter";
-import { FieldErrors, UseFormRegister } from "react-hook-form";
+import { FieldErrors, UseFormRegister, FieldError } from "react-hook-form";
 import { QuestionType } from "@/app/types/question";
 
 type Props = {
@@ -11,12 +11,20 @@ type Props = {
   errors: FieldErrors;
 };
 
+const getErrorMessage = (error: FieldError): string => {
+  return error.message || "This field is required";
+};
+
+/**
+ * Component to display a question and handle its input field.
+ */
 const QuestionField: React.FC<Props> = ({ question, register, errors }) => {
   if (!question) {
     return <p className="text-red-500">Question not found.</p>;
   }
 
   const errorKey = question.id;
+  const error = errors[errorKey] as FieldError | undefined;
 
   return (
     <Field className="flex flex-col gap-2">
@@ -59,24 +67,12 @@ const QuestionField: React.FC<Props> = ({ question, register, errors }) => {
             autoComplete="off"
             className={clsx(
               "block w-full rounded-lg border-none bg-white/5 py-1.5 px-3 text-sm/6 text-white placeholder:text-white/50 focus:ring-0",
-              errors[errorKey] && "border-2 border-red-500"
+              error && "border-2 border-red-500"
             )}
-            {...register(errorKey, {
-              onChange: (e) => {
-                const formData = JSON.parse(
-                  localStorage.getItem("formData") || "{}"
-                );
-                formData[errorKey] = e.target.value;
-                localStorage.setItem("formData", JSON.stringify(formData));
-              }
-            })}
+            {...register(errorKey)}
           />
-          {errors[errorKey] && (
-            <p className="text-sm/6 text-red-500">
-              {typeof errors[errorKey] === "string"
-                ? errors[errorKey]
-                : "An error occurred"}
-            </p>
+          {error && (
+            <p className="text-sm/6 text-red-500">{getErrorMessage(error)}</p>
           )}
         </>
       ) : (
@@ -84,24 +80,12 @@ const QuestionField: React.FC<Props> = ({ question, register, errors }) => {
           <Textarea
             className={clsx(
               "block w-full rounded-lg border-none bg-white/5 py-1.5 px-3 text-sm/6 text-white placeholder:text-white/50 focus:ring-0",
-              errors[errorKey] && "border-2 border-red-500"
+              error && "border-2 border-red-500"
             )}
-            {...register(errorKey, {
-              onChange: (e) => {
-                const formData = JSON.parse(
-                  localStorage.getItem("formData") || "{}"
-                );
-                formData[errorKey] = e.target.value;
-                localStorage.setItem("formData", JSON.stringify(formData));
-              }
-            })}
+            {...register(errorKey)}
           />
-          {errors[errorKey] && (
-            <p className="text-sm/6 text-red-500">
-              {typeof errors[errorKey] === "string"
-                ? errors[errorKey]
-                : "An error occurred"}
-            </p>
+          {error && (
+            <p className="text-sm/6 text-red-500">{getErrorMessage(error)}</p>
           )}
         </>
       )}

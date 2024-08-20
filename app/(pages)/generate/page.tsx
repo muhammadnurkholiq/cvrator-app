@@ -16,12 +16,13 @@ const Page: React.FC = () => {
       setError(null); // Reset error state before starting a new fetch
       try {
         // Fetch data from local storage and send it to the API
-        const storedData = localStorage.getItem("finalData");
-        if (!storedData) {
+        const userData = localStorage.getItem("user-data");
+        if (!userData) {
           throw new Error("No data found in local storage");
         }
 
-        const jsonData = JSON.parse(storedData);
+        const jsonData = JSON.parse(userData);
+
         const response = await fetch(
           "https://services-cvrator.vercel.app/base/generate",
           {
@@ -29,7 +30,7 @@ const Page: React.FC = () => {
             headers: {
               "Content-Type": "application/json"
             },
-            body: JSON.stringify(jsonData)
+            body: { ...jsonData, age: parseInt(jsonData.age) }
           }
         );
 

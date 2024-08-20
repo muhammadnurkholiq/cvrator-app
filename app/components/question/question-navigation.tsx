@@ -10,6 +10,9 @@ type Props = {
   handleOpenDialog: () => void;
 };
 
+/**
+ * Component to handle navigation between questions.
+ */
 const QuestionNavigation: React.FC<Props> = ({
   handleNext,
   handlePrev,
@@ -21,29 +24,36 @@ const QuestionNavigation: React.FC<Props> = ({
   const isLastQuestion = questionNumber === totalQuestions - 1;
 
   return (
-    <div className="flex flex-row items-center justify-between">
+    <div className="flex justify-between">
       <Button
+        type="button"
         onClick={handlePrev}
         disabled={questionNumber === 0}
         className="bg-grey-900 text-white border border-grey-900 hover:bg-primary-main rounded py-2 px-4 disabled:cursor-not-allowed disabled:text-grey-500"
       >
         Previous
       </Button>
-      <Button
-        onClick={() => {
-          if (isLastQuestion) {
-            handleOpenDialog();
-          } else {
-            handleNext();
-          }
-        }}
-        disabled={isNextDisabled}
-        className="bg-grey-900 text-white border border-grey-900 hover:bg-primary-main rounded py-2 px-4 disabled:cursor-not-allowed disabled:text-grey-500"
-      >
-        {!isLastQuestion ? "Next" : "Finish"}
-      </Button>
+      {isLastQuestion ? (
+        <Button
+          type="button"
+          onClick={handleOpenDialog}
+          disabled={isNextDisabled}
+          className="bg-grey-900 text-white border border-grey-900 hover:bg-primary-main rounded py-2 px-4 disabled:cursor-not-allowed disabled:text-grey-500"
+        >
+          Finish
+        </Button>
+      ) : (
+        <Button
+          type="button"
+          onClick={handleNext}
+          disabled={isNextDisabled}
+          className="bg-grey-900 text-white border border-grey-900 hover:bg-primary-main rounded py-2 px-4 disabled:cursor-not-allowed disabled:text-grey-500"
+        >
+          Next
+        </Button>
+      )}
     </div>
   );
 };
 
-export default React.memo(QuestionNavigation);
+export default QuestionNavigation;
