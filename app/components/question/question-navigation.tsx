@@ -13,47 +13,51 @@ type Props = {
 /**
  * Component to handle navigation between questions.
  */
-const QuestionNavigation: React.FC<Props> = ({
-  handleNext,
-  handlePrev,
-  questionNumber,
-  totalQuestions,
-  isNextDisabled,
-  handleOpenDialog
-}) => {
-  const isLastQuestion = questionNumber === totalQuestions - 1;
+const QuestionNavigation = React.memo(
+  ({
+    handleNext,
+    handlePrev,
+    questionNumber,
+    totalQuestions,
+    isNextDisabled,
+    handleOpenDialog
+  }: Props) => {
+    const isLastQuestion = questionNumber === totalQuestions - 1;
 
-  return (
-    <div className="flex justify-between">
-      <Button
-        type="button"
-        onClick={handlePrev}
-        disabled={questionNumber === 0}
-        className="bg-grey-900 text-white border border-grey-900 hover:bg-primary-main rounded py-2 px-4 disabled:cursor-not-allowed disabled:text-grey-500"
-      >
-        Previous
-      </Button>
-      {isLastQuestion ? (
+    return (
+      <div className="flex justify-between">
         <Button
           type="button"
-          onClick={handleOpenDialog}
-          disabled={isNextDisabled}
+          onClick={handlePrev}
+          disabled={questionNumber === 0}
           className="bg-grey-900 text-white border border-grey-900 hover:bg-primary-main rounded py-2 px-4 disabled:cursor-not-allowed disabled:text-grey-500"
         >
-          Finish
+          Previous
         </Button>
-      ) : (
-        <Button
-          type="button"
-          onClick={handleNext}
-          disabled={isNextDisabled}
-          className="bg-grey-900 text-white border border-grey-900 hover:bg-primary-main rounded py-2 px-4 disabled:cursor-not-allowed disabled:text-grey-500"
-        >
-          Next
-        </Button>
-      )}
-    </div>
-  );
-};
+        {isLastQuestion ? (
+          <Button
+            type="button"
+            onClick={handleOpenDialog}
+            disabled={isNextDisabled}
+            className="bg-grey-900 text-white border border-grey-900 hover:bg-primary-main rounded py-2 px-4 disabled:cursor-not-allowed disabled:text-grey-500"
+          >
+            Finish
+          </Button>
+        ) : (
+          <Button
+            type="button"
+            onClick={handleNext}
+            disabled={isNextDisabled}
+            className="bg-grey-900 text-white border border-grey-900 hover:bg-primary-main rounded py-2 px-4 disabled:cursor-not-allowed disabled:text-grey-500"
+          >
+            Next
+          </Button>
+        )}
+      </div>
+    );
+  }
+);
+
+QuestionNavigation.displayName = "QuestionNavigation";
 
 export default QuestionNavigation;

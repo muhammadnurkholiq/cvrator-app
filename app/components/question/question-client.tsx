@@ -39,7 +39,7 @@ const QuestionClient: React.FC<Props> = ({ questions }) => {
   // Load data from localStorage when questionNumber changes
   useEffect(() => {
     const currentQuestionId = questions[questionNumber]
-      .id as keyof QuestionFormValues;
+      ?.id as keyof QuestionFormValues;
     const storedData = JSON.parse(localStorage.getItem("user-data") || "{}");
     const value = storedData[currentQuestionId] || "";
     setValue(currentQuestionId, value as string);
