@@ -154,7 +154,7 @@ const ResumeTemplate1PDF: React.FC<ResumeTemplate1PDFProps> = ({
   dataUser
 }) => {
   return (
-    <Document title={`CVRATOR-${dataUser?.name}`}>
+    <Document title={`CVRATOR-${dataUser?.name}`} author="CVRATOR">
       <Page size="A4" style={styles.page}>
         {/* Section 1 - Identity */}
         <View style={styles.section}>
