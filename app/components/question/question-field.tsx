@@ -39,17 +39,6 @@ const QuestionField: React.FC<Props> = ({ question, register, errors }) => {
         />
       </Label>
       <Description className="text-sm/6 text-white/50">
-        Description:{" "}
-        <Typewriter
-          key={question.id + "_desc"}
-          words={[question.desc || ""]}
-          cursor
-          cursorStyle="_"
-          typeSpeed={25}
-          deleteSpeed={0}
-        />
-      </Description>
-      <Description className="text-sm/6 text-white/50">
         Example of input:{" "}
         <Typewriter
           key={question.id + "_example"}
