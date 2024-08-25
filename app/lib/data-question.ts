@@ -31,7 +31,7 @@ export const questions: QuestionType[] = [
   },
   {
     id: "address",
-    text: "What is your address?",
+    text: "What is your city, province?",
     example: "Bandung, Jawa Barat",
     type: "text",
     line: "single"
