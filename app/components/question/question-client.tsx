@@ -170,7 +170,6 @@ const QuestionClient: React.FC<Props> = ({ questions }) => {
               INFORMATION
             </p>
             <ListQuestionAnswer name="Name" value={getValues("name")} />
-            <ListQuestionAnswer name="Age" value={getValues("age")} />
             <ListQuestionAnswer name="Email" value={getValues("email")} />
             <ListQuestionAnswer name="Phone" value={getValues("phone")} />
             <ListQuestionAnswer name="Address" value={getValues("address")} />
