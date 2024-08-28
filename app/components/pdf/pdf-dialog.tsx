@@ -63,7 +63,7 @@ const PDFDialog: React.FC<Props> = ({ open, close }) => {
                     <div className="mt-4">
                       <div className="mt-4 flex flex-row justify-center items-center gap-5">
                         <Button
-                          className="bg-grey-900 text-white border border-grey-900 hover:bg-primary-main rounded py-2 px-4 disabled:cursor-not-allowed disabled:text-grey-500"
+                          className="bg-grey-900 text-white border border-grey-900 hover:bg-primary-main rounded py-2 px-4 disabled:cursor-not-allowed disabled:text-grey-500 text-sm"
                           onClick={close}
                         >
                           Cancel
@@ -71,7 +71,7 @@ const PDFDialog: React.FC<Props> = ({ open, close }) => {
                         <Link
                           href="/"
                           onClick={handleResetData}
-                          className="bg-primary-main text-white border border-grey-900 hover:bg-primary-dark rounded py-2 px-4 disabled:cursor-not-allowed disabled:text-grey-500"
+                          className="bg-primary-main text-white border border-grey-900 hover:bg-primary-dark rounded py-2 px-4 disabled:cursor-not-allowed disabled:text-grey-500 text-sm"
                         >
                           Yes
                         </Link>
