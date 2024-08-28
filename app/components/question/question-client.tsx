@@ -159,6 +159,7 @@ const QuestionClient: React.FC<Props> = ({ questions }) => {
               totalQuestions={questions.length}
               isNextDisabled={isNextDisabled}
               handleFinish={handleConfirm}
+              question={currentQuestion}
             />
           </div>
         </div>
@@ -169,7 +170,6 @@ const QuestionClient: React.FC<Props> = ({ questions }) => {
               INFORMATION
             </p>
             <ListQuestionAnswer name="Name" value={getValues("name")} />
-            <ListQuestionAnswer name="Age" value={getValues("age")} />
             <ListQuestionAnswer name="Email" value={getValues("email")} />
             <ListQuestionAnswer name="Phone" value={getValues("phone")} />
             <ListQuestionAnswer name="Address" value={getValues("address")} />
@@ -190,14 +190,14 @@ const QuestionClient: React.FC<Props> = ({ questions }) => {
               <Button
                 type="button"
                 onClick={handleCancel}
-                className="bg-grey-900 text-white border border-grey-900 hover:bg-primary-main rounded py-2 px-4 disabled:cursor-not-allowed disabled:text-grey-500"
+                className="bg-grey-900 text-white border border-grey-900 hover:bg-primary-main rounded py-2 px-4 disabled:cursor-not-allowed disabled:text-grey-500 text-sm"
               >
                 Re-Check
               </Button>
               <Button
                 type="button"
                 onClick={handleOpenDialog}
-                className="bg-primary-main text-white border border-grey-900 hover:bg-primary-dark rounded py-2 px-4 disabled:cursor-not-allowed disabled:text-grey-500"
+                className="bg-primary-main text-white border border-grey-900 hover:bg-primary-dark rounded py-2 px-4 disabled:cursor-not-allowed disabled:text-grey-500 text-sm"
               >
                 Generate CV
               </Button>

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Button } from "@headlessui/react";
 
 export default function Page() {
   return (
@@ -24,9 +25,9 @@ export default function Page() {
         </div>
 
         <Link href="/question">
-          <button className="bg-grey-900 text-white border border-grey-900 hover:bg-primary-main focus:outline-none focus:ring-2 focus:ring-primary-main rounded py-2 px-4">
+          <Button className="bg-grey-900 text-white border border-grey-900 hover:bg-primary-main focus:outline-none focus:ring-2 focus:ring-primary-main rounded py-2 px-4 text-sm">
             Try now for free
-          </button>
+          </Button>
         </Link>
       </div>
     </main>

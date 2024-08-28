@@ -44,7 +44,7 @@ const Page: React.FC = () => {
             headers: {
               "Content-Type": "application/json"
             },
-            body: JSON.stringify({ ...jsonData, age: parseInt(jsonData.age) })
+            body: JSON.stringify(jsonData)
           }
         );
 

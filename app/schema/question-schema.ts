@@ -9,15 +9,6 @@ export const QuestionSchema = z.object({
       message: "Name must contain at least one word"
     }),
 
-  age: z
-    .string()
-    .min(1, "Age must have at least 1 character")
-    .max(2, "Age must be less than 2 characters")
-    .regex(/^\d+$/, "Age must contain only numbers")
-    .refine((value) => parseInt(value, 10) > 0, {
-      message: "Age must be greater than 0"
-    }),
-
   email: z
     .string()
     .email("Invalid email address")
